@@ -23,19 +23,16 @@ load-module module-device-restore
 load-module module-stream-restore
 load-module module-card-restore
 
+### Should be after module-*-restore but before module-*-detect
+load-module module-switch-on-port-available
+load-module module-switch-on-connect
+
 ### Automatically load driver modules depending on the hardware available
-.ifexists module-udev-detect.so
 load-module module-udev-detect
-.else
-### Use the static hardware detection module (for systems that lack udev/hal support)
-load-module module-detect
-.endif
 
 ### Load several protocols
-.ifexists module-esound-protocol-unix.so
-load-module module-esound-protocol-unix
-.endif
-load-module module-native-protocol-unix
+load-module module-dbus-protocol
+load-module module-native-protocol-tcp listen=0.0.0.0 auth-cookie=/data/cookie
 
 ### Automatically restore the default sink/source when changed by the user
 ### during runtime
