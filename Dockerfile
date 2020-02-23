@@ -4,6 +4,7 @@ FROM ${BUILD_FROM}
 RUN apk add --no-cache \
     eudev \
     pulseaudio \
-    pulseaudio-alsa
+    pulseaudio-alsa \
+    pulseaudio-bluez
 
 COPY rootfs /
