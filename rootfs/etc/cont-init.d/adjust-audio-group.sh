@@ -7,7 +7,7 @@ LOCAL_AUDIO_GID=$(grep "^audio" /etc/group | cut -d':' -f 3)
 
 # Need processing?
 bashio::log.info "Host GUID: ${HOST_AUDIO_GID} - Local GUID: ${LOCAL_AUDIO_GID}"
-if [ "${HOST_AUDIO_GID}" == "${LOCAL_AUDIO_GID}" ];
+if [ "${HOST_AUDIO_GID}" == "${LOCAL_AUDIO_GID}" ]; then
     bashio::exit.ok
 fi
 
