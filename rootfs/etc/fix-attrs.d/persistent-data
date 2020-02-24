@@ -1,1 +1,1 @@
-/data true pulse 0644 0755
+/var/lib/pulse true pulse 0644 0755
