@@ -32,7 +32,7 @@ load-module module-udev-detect
 
 ### Load several protocols
 load-module module-dbus-protocol
-load-module module-native-protocol-unix socket=/data/internal/pulse.sock auth-cookie=/data/internal/cookie_unix
+load-module module-native-protocol-unix auth-anonymous=1 socket=/data/internal/pulse.sock
 
 ### Automatically restore the default sink/source when changed by the user
 ### during runtime

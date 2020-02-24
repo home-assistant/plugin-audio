@@ -2,18 +2,4 @@
 # ==============================================================================
 # Start PulseAudio service
 # ==============================================================================
-pulseaudio --system -vvv &
-PULSE_PID=$!
-
-if [ ! -f /data/external/cookie_unix ]; then
-    while [ ! -f /data/internal/cookie_unix ]; do
-        bashio::log.debug "Waiting for cookie files"
-        sleep 1
-    done
-
-    bashio::log.info "Preserve UNIX session auth cookie"
-    cp -f /data/internal/cookie_unix /data/external/cookie_unix
-    chmod 640 /data/external/cookie_unix
-fi
-
-wait ${PULSE_PID}
+exec pulseaudio --system -vvv

@@ -10,7 +10,6 @@ fi
 
 # Internal
 if [ ! -d /data/internal ]; then
-    mkdir -p /data/internal
     mkdir -p /data/internal/states
     chown -R pulse:pulse /data/internal
 fi
