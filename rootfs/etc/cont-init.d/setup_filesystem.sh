@@ -16,4 +16,5 @@ if [ ! -d /data/internal ]; then
 fi
 
 # Mount persistant data
+mkdir -p /var/lib/pulse
 mount --bind /data/internal/states /var/lib/pulse
