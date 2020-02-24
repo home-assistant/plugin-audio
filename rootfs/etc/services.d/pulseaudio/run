@@ -11,9 +11,9 @@ if [ ! -f /data/external/cookie_unix ]; then
         sleep 1
     done
 
-bashio::log.info "Preserve UNIX session auth cookie"
-cp -f /data/internal/cookie_unix /data/external/cookie_unix
-chmod 640 /data/external/cookie_unix
+    bashio::log.info "Preserve UNIX session auth cookie"
+    cp -f /data/internal/cookie_unix /data/external/cookie_unix
+    chmod 640 /data/external/cookie_unix
 fi
 
 wait ${PULSE_PID}
