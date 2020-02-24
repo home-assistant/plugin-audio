@@ -4,11 +4,16 @@
 # ==============================================================================
 
 # External
-mkdir -p /data/external
+if [ ! -d /data/external ]; then
+    mkdir -p /data/external
+fi
 
 # Internal
-mkdir -p /data/internal
-mkdir -p /data/internal/states
+if [ ! -d /data/internal ]; then
+    mkdir -p /data/internal
+    mkdir -p /data/internal/states
+    chown -R pulse:pulse /data/internal
+fi
 
-chowm -R pulse:pulse /data/internal
+# Mount persistant data
 mount --bind /data/internal/states /var/lib/pulse
