@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start Socat bridge service
+# ==============================================================================
+exec socat UNIX-LISTEN:/data/external/pulse.sock,fork,unlink-early UNIX-CONNECT:/data/internal/pulse.sock

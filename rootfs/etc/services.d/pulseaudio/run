@@ -2,4 +2,14 @@
 # ==============================================================================
 # Start PulseAudio service
 # ==============================================================================
-exec pulseaudio --system -vvv
+pulseaudio --system -vvv &
+PULSE_PID=$!
+
+while [ ! -f /data/internal/cookie_unix ]; do
+    bashio::log.debug "Waiting for cookie files"
+    sleep 1
+done
+
+cp /data/internal/cookie_unix /data/external/cookie_unix
+
+wait $PULSE_PID
