@@ -2,7 +2,7 @@
 # ==============================================================================
 # Adjust host audio group with gid inside container
 # ==============================================================================
-HOST_AUDIO_GID=$(grep "^audio" /etc/group_host | cut -d':' -f 3)
+HOST_AUDIO_GID=$(grep "^audio" /host/group | cut -d':' -f 3)
 LOCAL_AUDIO_GID=$(grep "^audio" /etc/group | cut -d':' -f 3)
 
 # Need processing?
