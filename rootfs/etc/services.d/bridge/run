@@ -2,4 +2,4 @@
 # ==============================================================================
 # Start Socat bridge service
 # ==============================================================================
-exec socat UNIX-LISTEN:/data/external/pulse.sock,fork,unlink-early UNIX-CONNECT:/data/internal/pulse.sock
+exec socat UNIX-LISTEN:/data/external/pulse.sock,fork,unlink-early,mode=777 UNIX-CONNECT:/data/internal/pulse.sock
