@@ -3,7 +3,7 @@
 # Adjust host audio group with gid inside container
 # ==============================================================================
 if [ ! -d /dev/snd ]; then
-    bashio:log.warning "The host have no audio support!"
+    bashio:log.warning "The host has no audio support!"
     bashio::exit.ok
 fi
 
