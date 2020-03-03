@@ -2,8 +2,14 @@
 # ==============================================================================
 # Adjust host audio group with gid inside container
 # ==============================================================================
-HOST_AUDIO_GID=$(grep "^audio" /host/group | cut -d':' -f 3)
-LOCAL_AUDIO_GID=$(grep "^audio" /etc/group | cut -d':' -f 3)
+if [ ! -d /dev/snd ]; then
+    bashio:log.warning "The host have no audio support!"
+    bashio::exit.ok
+fi
+
+# Get GID data
+HOST_AUDIO_GID="$(grep "^audio" /host/group | cut -d':' -f 3)"
+LOCAL_AUDIO_GID="$(grep "^audio" /etc/group | cut -d':' -f 3)"
 
 # Need processing?
 bashio::log.info "Host GID: ${HOST_AUDIO_GID} - Local GID: ${LOCAL_AUDIO_GID}"
