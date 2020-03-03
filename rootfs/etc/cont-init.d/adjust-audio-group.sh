@@ -21,7 +21,7 @@ fi
 if grep ":${HOST_AUDIO_GID}:"; then
     bashio::log.warning "Fix GID permission"
     GROUP_NAME=$(grep ":${HOST_AUDIO_GID}:" /etc/group | cut -d':' -f 0)
-    addgroup pulse ${GROUP_NAME}
+    addgroup pulse "${GROUP_NAME}"
 else
     bashio::log.info "Update local GID for audio"
     sed -i "s/audio:x:${LOCAL_AUDIO_GID}:/audio:x:${HOST_AUDIO_GID}:/g" /etc/group
