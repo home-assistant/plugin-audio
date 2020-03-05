@@ -31,7 +31,7 @@ load-module module-switch-on-connect
 load-module module-udev-detect
 
 ### Load several protocols
-load-module module-native-protocol-unix auth-anonymous=1 socket=/data/internal/pulse.sock
+load-module module-native-protocol-unix auth-anonymous=1 auth-cookie-enabled=0 socket=/data/internal/pulse.sock
 
 ### Automatically restore the default sink/source when changed by the user
 ### during runtime
