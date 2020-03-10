@@ -20,15 +20,18 @@ You can make troubleshooting with the Terminal Add-ons from Core or Community. T
 
 With Home Assistant cli util `ha` you can manage the container and there output:
 
-|----------|---------------|
 | Command  | Description   |
-| `ha audio info` | Show all information they are available on Supervisor |
-| `ha audio reload` | Reload information from running Pulse server |
-| `ha audio logs` | Show output of Pulse server. |
-| `ha audio restart` | Restart the PulseAudio container. |
+|----------|---------------|
+| ha audio info | Show all information they are available on Supervisor |
+| ha audio reload | Reload information from running Pulse server |
+| ha audio logs | Show output of Pulse server. |
+| ha audio restart | Restart the PulseAudio container. |
 
 ### PulseAudio
 
 You have the full access to the Pulse server to adjust any kind of settings and optimize. A full list of loaded settings is available with:
 
 `pactl list`
+
+Mostly you have sound issues and need enable a different Profile for you Card.
+
