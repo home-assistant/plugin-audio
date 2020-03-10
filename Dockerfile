@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+
 ARG ALSA_VERSION
 RUN \
     apk add --no-cache \
