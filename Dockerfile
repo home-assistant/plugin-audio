@@ -1,8 +1,7 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-ARG ALSA_VERSION=1.2.2
-
+ARG ALSA_VERSION
 RUN \
     apk add --no-cache \
         eudev \
