@@ -8,7 +8,8 @@
     "i386": "homeassistant/i386-base:3.11"
   },
   "args": {
-    "ALSA_VERSION": "1.2.2"
+    "ALSA_VERSION": "1.2.2",
+    "PULSE_VERSION": "13.0"
   },
   "labels": {
     "io.hass.type": "audio"
