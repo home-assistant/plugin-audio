@@ -13,10 +13,10 @@ RUN \
         dbus-libs \
         tdb-libs \
         bluez-libs \
-	    libsndfile \
-	    speexdsp \
-	    openssl \
-	    fftw \
+        libsndfile \
+        speexdsp \
+        openssl \
+        fftw \
         soxr \
         sbc \
     && apk add --no-cache --virtual .build-deps \
@@ -24,17 +24,17 @@ RUN \
         build-base \
         tdb-dev \
         alsa-lib-dev \
-	    dbus-dev \
-	    glib-dev \
-	    libsndfile-dev \
+        dbus-dev \
+        glib-dev \
+        libsndfile-dev \
         soxr-dev \
-	    fftw-dev \
+        fftw-dev \
         bluez-dev \
-	    openssl-dev \
-	    speexdsp-dev \
-	    eudev-dev \
+        openssl-dev \
+        speexdsp-dev \
+        eudev-dev \
         sbc-dev \
-	    libtool \
+        libtool \
         git \
         m4 \
         patch \
