@@ -10,6 +10,8 @@ COPY patches /usr/src/patches
 RUN \
     apk add --no-cache \
         eudev \
+        libintl \
+        libltdl \
         alsa-lib \
         dbus-libs \
         tdb-libs \
