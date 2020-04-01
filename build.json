@@ -9,7 +9,8 @@
   },
   "args": {
     "ALSA_VERSION": "1.2.2",
-    "PULSE_VERSION": "13.0"
+    "PULSE_VERSION": "13.0",
+    "JEMALLOC_VERSION": "5.2.1"
   },
   "labels": {
     "io.hass.type": "audio"

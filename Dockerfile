@@ -5,6 +5,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 ARG ALSA_VERSION
 ARG PULSE_VERSION
+ARG JEMALLOC_VERSION
 COPY patches /usr/src/patches
 RUN \
     apk add --no-cache \
@@ -46,6 +47,7 @@ RUN \
     && curl -L -s --retry 5 \
         "ftp://ftp.alsa-project.org/pub/lib/alsa-topology-conf-${ALSA_VERSION}.tar.bz2" \
         | tar xvfj - -C /usr/share/alsa --strip-components=1 \
+    \
     && git clone -b v${PULSE_VERSION} --depth 1 \
         https://github.com/pulseaudio/pulseaudio /usr/src/pulseaudio \
     && cd /usr/src/pulseaudio \
@@ -55,7 +57,7 @@ RUN \
         --prefix=/usr \
         --sysconfdir=/etc \
         --localstatedir=/var \
-        --optimization=s \
+        --optimization=3 \
         --buildtype=plain \
         -Dgcov=false \
         -Dman=false \
@@ -89,9 +91,20 @@ RUN \
         . output \
     && ninja -C output \
     && ninja -C output install \
+    \
+    && curl -L -s \
+        https://github.com/jemalloc/jemalloc/releases/download/${JEMALLOC_VERSION}/jemalloc-${JEMALLOC_VERSION}.tar.bz2 \
+        | tar -xjf - -C /usr/src \
+    && cd /usr/src/jemalloc-${JEMALLOC_VERSION} \
+    && ./configure \
+    && make \
+    && make install \
+    \
     && apk del .build-deps \
     && rm -rf \
         /usr/src/pulseaudio \
-        /usr/src/patches
+        /usr/src/patches \
+        /usr/src/jemalloc-${JEMALLOC_VERSION}
 
+ENV LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 COPY rootfs /
