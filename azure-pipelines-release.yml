@@ -1,0 +1,51 @@
+# https://dev.azure.com/home-assistant
+
+trigger:
+  tags:
+    include:
+    - '*'
+pr: none
+
+variables:
+  - name: versionBuilder
+    value: '7.2.0'
+  - group: docker
+
+jobs:
+
+- job: 'Release'
+  dependsOn:
+  - 'Hadolint'
+  timeoutInMinutes: 360
+  pool:
+    vmImage: 'ubuntu-latest'
+  strategy:
+    matrix:
+      amd64:
+        buildArch: 'amd64'
+      i386:
+        buildArch: 'i386'
+      armhf:
+        buildArch: 'armhf'
+      armv7:
+        buildArch: 'armv7'
+      aarch64:
+        buildArch: 'aarch64'
+  steps:
+  - script: sudo docker login -u $(dockerUser) -p $(dockerPassword)
+    displayName: 'Docker hub login'
+  - script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+    displayName: 'Install Builder'
+  - script: |
+      if [ "$(Build.SourceBranchName)" == "master" ];
+        version="dev"
+      else
+        version="$(Build.SourceBranchName)"
+      fi
+
+      sudo docker run --rm --privileged \
+        -v ~/.docker:/root/.docker \
+        -v /run/docker.sock:/run/docker.sock:rw -v $(pwd):/data:ro \
+        homeassistant/amd64-builder:$(versionBuilder) \
+        --generic "${version}" "--$(buildArch)" -t /data
+    displayName: 'Build Release'
