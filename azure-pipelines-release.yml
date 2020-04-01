@@ -14,8 +14,6 @@ variables:
 jobs:
 
 - job: 'Release'
-  dependsOn:
-  - 'Hadolint'
   timeoutInMinutes: 360
   pool:
     vmImage: 'ubuntu-latest'
