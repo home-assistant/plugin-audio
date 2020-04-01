@@ -38,7 +38,7 @@ jobs:
   - script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
     displayName: 'Install Builder'
   - script: |
-      if [ "$(Build.SourceBranchName)" == "master" ];
+      if [ "$(Build.SourceBranchName)" == "master" ]; then
         version="dev"
       else
         version="$(Build.SourceBranchName)"
