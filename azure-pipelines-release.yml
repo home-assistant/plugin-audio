@@ -1,6 +1,9 @@
 # https://dev.azure.com/home-assistant
 
 trigger:
+  branches:
+    include:
+    - master
   tags:
     include:
     - '*'
