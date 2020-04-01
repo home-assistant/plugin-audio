@@ -12,6 +12,7 @@ RUN \
         eudev \
         libintl \
         libltdl \
+        alsa-utils \
         alsa-lib \
         dbus-libs \
         tdb-libs \
