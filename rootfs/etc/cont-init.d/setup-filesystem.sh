@@ -11,7 +11,6 @@ fi
 # Internal
 if [ ! -d /data/internal ]; then
     mkdir -p /data/internal/states
-    chown -R pulse:pulse /data/internal
 fi
 
 # Mount persistant data
