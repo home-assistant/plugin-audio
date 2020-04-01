@@ -61,6 +61,8 @@ RUN \
         --localstatedir=/var \
         --optimization=3 \
         --buildtype=plain \
+        -Datomic-arm-linux-helpers=true \
+        -Datomic-arm-memory-barrier=false \
         -Dgcov=false \
         -Dman=false \
         -Dtests=false \
