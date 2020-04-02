@@ -2,7 +2,7 @@
 # ==============================================================================
 # Check device information and adjust Pulse
 # ==============================================================================
-ALSA_CARDS="$(aplay -L)"
+ALSA_CARDS="$(aplay -l)"
 
 # BCM2835
 if echo "${ALSA_CARDS}" | grep "[bcm2835 ALSA]"; then
