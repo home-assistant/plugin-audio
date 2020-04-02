@@ -2,4 +2,4 @@
 # ==============================================================================
 # Start PulseAudio service
 # ==============================================================================
-exec pulseaudio --system -vvv
+exec pulseaudio --system -vvv --disallow-exit --exit-idle-time=-1 --disable-shm
