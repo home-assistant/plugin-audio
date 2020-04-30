@@ -127,6 +127,7 @@ mixer $card 'FRDDR_A SRC 1 EN' on
 mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
 mixer $card 'TOHDMITX I2S SRC' 'I2S B'
 mixer $card 'TOHDMITX' on
+mixer $card 'ACODEC' 100% on
 
 # Amlogic G12 S/PDIF to PCM1
 mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 3'
