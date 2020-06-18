@@ -118,20 +118,20 @@ mixer $card 'Power Amplifier Mute' on
 mixer $card Headphone 0db on
 mixer $card 'AIF1 Slot 0 Digital DAC' on
 
-# Amlogic G12 DAC to PCM0
-amixer sset 'FRDDR_A SINK 1 SEL' 'OUT 2'
+# Amlogic G12 HDMI to PCM0
+amixer sset 'FRDDR_A SINK 1 SEL' 'OUT 1'
 amixer sset 'FRDDR_A SRC 1 EN' on
-amixer sset 'TDMOUT_C SRC SEL' 'IN 0'
+amixer sset 'TDMOUT_B SRC SEL' 'IN 0'
+amixer sset 'TOHDMITX I2S SRC' 'I2S B'
+amixer sset 'TOHDMITX' on
+
+# Amlogic G12 DAC to PCM1
+amixer sset 'FRDDR_B SINK 1 SEL' 'OUT 2'
+amixer sset 'FRDDR_B SRC 1 EN' on
+amixer sset 'TDMOUT_C SRC SEL' 'IN 1'
 amixer sset 'TOACODEC SRC' 'I2S C'
 amixer sset 'TOACODEC OUT EN' on
 amixer sset 'ACODEC' 100%
-
-# Amlogic G12 HDMI to PCM1
-amixer sset 'FRDDR_B SINK 1 SEL' 'OUT 1'
-amixer sset 'FRDDR_B SRC 1 EN' on
-amixer sset 'TDMOUT_B SRC SEL' 'IN 1'
-amixer sset 'TOHDMITX I2S SRC' 'I2S B'
-amixer sset 'TOHDMITX' on
 
 # Amlogic GX HDMI and S/PDIF
 mixer $card 'AIU HDMI CTRL SRC' 'I2S'
