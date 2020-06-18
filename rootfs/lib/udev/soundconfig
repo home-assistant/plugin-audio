@@ -3,7 +3,8 @@
 
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2018-2020 Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2020-present Home Assistant (https://home-assistant.io)
 
 # setup alsa (especially the mixer config)
 
@@ -27,10 +28,6 @@ mixer $card Synth 100%
 
 # mute CD, since using digital audio instead
 mixer $card CD 0% mute
-
-# Only unmute Line and Aux if they are possibly used.
-#  mixer $card Line 100%
-#  mixer $card Aux 100%
 
 # mute mic
 mixer $card Mic 0% mute
@@ -122,17 +119,19 @@ mixer $card Headphone 0db on
 mixer $card 'AIF1 Slot 0 Digital DAC' on
 
 # Amlogic G12 HDMI to PCM0
-mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 1'
-mixer $card 'FRDDR_A SRC 1 EN' on
-mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
-mixer $card 'TOHDMITX I2S SRC' 'I2S B'
-mixer $card 'TOHDMITX' on
+amixer sset 'FRDDR_A SINK 1 SEL' 'OUT 1'
+amixer sset 'FRDDR_A SRC 1 EN' on
+amixer sset 'TDMOUT_B SRC SEL' 'IN 0'
+amixer sset 'TOHDMITX I2S SRC' 'I2S B'
+amixer sset 'TOHDMITX' on
 
-# Amlogic G12 S/PDIF to PCM1
-mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 3'
-mixer $card 'FRDDR_B SRC 1 EN' on
-mixer $card 'SPDIFOUT SRC SEL' 'IN 1'
-mixer $card 'SPDIFOUT Playback' on
+# Amlogic G12 DAC to PCM1
+amixer sset 'FRDDR_B SINK 1 SEL' 'OUT 2'
+amixer sset 'FRDDR_B SRC 1 EN' on
+amixer sset 'TDMOUT_C SRC SEL' 'IN 1'
+amixer sset 'TOACODEC SRC' 'I2S C'
+amixer sset 'TOACODEC OUT EN' on
+amixer sset 'ACODEC' 100%
 
 # Amlogic GX HDMI and S/PDIF
 mixer $card 'AIU HDMI CTRL SRC' 'I2S'
