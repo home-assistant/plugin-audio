@@ -14,7 +14,6 @@ mixer() {
   amixer -c "$1" sset "$2" $parm >/dev/null 2>&1
 }
 
-(
 . /etc/profile
 
 # get card num
@@ -138,4 +137,3 @@ mixer $card 'AIU HDMI CTRL SRC' 'I2S'
 mixer $card 'AIU SPDIF SRC SEL' 'SPDIF'
 
 exit 0
-)&
