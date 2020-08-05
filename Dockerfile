@@ -97,19 +97,10 @@ RUN \
     && ninja -C output \
     && ninja -C output install \
     \
-    && curl -L -s \
-        https://github.com/jemalloc/jemalloc/releases/download/${JEMALLOC_VERSION}/jemalloc-${JEMALLOC_VERSION}.tar.bz2 \
-        | tar -xjf - -C /usr/src \
-    && cd /usr/src/jemalloc-${JEMALLOC_VERSION} \
-    && ./configure \
-    && make \
-    && make install \
-    \
     && apk del .build-deps \
     && rm -rf \
         /usr/src/pulseaudio \
-        /usr/src/patches \
-        /usr/src/jemalloc-${JEMALLOC_VERSION}
+        /usr/src/patches
 
 ENV LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 COPY rootfs /

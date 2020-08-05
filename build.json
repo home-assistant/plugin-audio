@@ -1,16 +1,15 @@
 {
   "image": "homeassistant/{arch}-hassio-audio",
   "build_from": {
-    "aarch64": "homeassistant/aarch64-base:3.11",
-    "armhf": "homeassistant/armhf-base:3.11",
-    "armv7": "homeassistant/armv7-base:3.11",
-    "amd64": "homeassistant/amd64-base:3.11",
-    "i386": "homeassistant/i386-base:3.11"
+    "aarch64": "homeassistant/aarch64-base:3.12",
+    "armhf": "homeassistant/armhf-base:3.12",
+    "armv7": "homeassistant/armv7-base:3.12",
+    "amd64": "homeassistant/amd64-base:3.12",
+    "i386": "homeassistant/i386-base:3.12"
   },
   "args": {
-    "ALSA_VERSION": "1.2.2",
-    "PULSE_VERSION": "13.0",
-    "JEMALLOC_VERSION": "5.2.1"
+    "ALSA_VERSION": "1.2.3",
+    "PULSE_VERSION": "13.0"
   },
   "labels": {
     "io.hass.type": "audio"
