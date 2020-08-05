@@ -29,6 +29,7 @@ load-module module-switch-on-connect
 
 ### Automatically load driver modules depending on the hardware available
 load-module module-udev-detect
+load-module module-bluetooth-discover
 
 ### Load several protocols
 load-module module-native-protocol-unix auth-anonymous=1 auth-cookie-enabled=0 socket=/data/external/pulse.sock
