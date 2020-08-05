@@ -13,5 +13,5 @@ fi
 for control in /dev/snd/control*
 do
     bashio::log.info "Adjust ALSA mixer settings for $control"
-    soundconfig $control
+    soundconfig "$control"
 done
