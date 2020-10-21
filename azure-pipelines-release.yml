@@ -1,52 +1,69 @@
 # https://dev.azure.com/home-assistant
 
 trigger:
+  batch: true
   branches:
     include:
-    - master
+      - master
   tags:
     include:
-    - '*'
+      - "*"
+  paths:
+    include:
+    - rootfs/*
+    - patches/*
+    - Dockerfile
+    - build.json
 pr: none
-
 variables:
   - name: versionBuilder
-    value: '7.2.0'
+    value: "7.2.0"
   - group: docker
+  - group: github
+resources:
+  repositories:
+    - repository: azure
+      type: github
+      name: "home-assistant/ci-azure"
+      endpoint: "home-assistant"
 
-jobs:
+stages:
 
-- job: 'Release'
-  timeoutInMinutes: 360
-  pool:
-    vmImage: 'ubuntu-latest'
-  strategy:
-    matrix:
-      amd64:
-        buildArch: 'amd64'
-      i386:
-        buildArch: 'i386'
-      armhf:
-        buildArch: 'armhf'
-      armv7:
-        buildArch: 'armv7'
-      aarch64:
-        buildArch: 'aarch64'
-  steps:
-  - script: sudo docker login -u $(dockerUser) -p $(dockerPassword)
-    displayName: 'Docker hub login'
-  - script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
-    displayName: 'Install Builder'
-  - script: |
-      if [ "$(Build.SourceBranchName)" == "master" ]; then
-        version="dev"
-      else
-        version="$(Build.SourceBranchName)"
-      fi
+  - stage: "Build"
+    jobs:
+      - job: "ReleaseDocker"
+        timeoutInMinutes: 240
+        pool:
+          vmImage: "ubuntu-latest"
+        strategy:
+          maxParallel: 5
+          matrix:
+            amd64:
+              buildArch: "amd64"
+            i386:
+              buildArch: "i386"
+            armhf:
+              buildArch: "armhf"
+            armv7:
+              buildArch: "armv7"
+            aarch64:
+              buildArch: "aarch64"
+        steps:
+          - template: templates/azp-step-plugin-version.yaml@azure
+          - template: templates/azp-step-build-generic.yaml@azure
+            parameters:
+              buildArch: $(buildArch)
+              buildVersion: $(pluginRelease)
 
-      sudo docker run --rm --privileged \
-        -v ~/.docker:/root/.docker \
-        -v /run/docker.sock:/run/docker.sock:rw -v $(pwd):/data:ro \
-        homeassistant/amd64-builder:$(versionBuilder) \
-        --generic "${version}" "--$(buildArch)" -t /data
-    displayName: 'Build Release'
+  - stage: "Publish"
+    jobs:
+      - job: "ReleaseHassio"
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - template: templates/azp-step-plugin-version.yaml@azure
+          - template: templates/azp-step-version-push.yaml@azure
+            parameters:
+              jsonTag: audio
+              commitName: Audio
+              buildVersion: $(pluginRelease)
