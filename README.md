@@ -4,7 +4,7 @@ PulseAudio implementation for Home Assistant.
 
 This container ship the upstream ALSA configs and base settings for Pulse.
 
-## How it work
+## How it works
 
 We have a central container they handle the ALSA settings and run on top a PulseAudio service. They service is expose to Home Assistant and Add-ons if they need audio support. This handling allow us to manage all central on one place and streamline the audio as a plaform.
 
