@@ -5,10 +5,11 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 ARG ALSA_VERSION
 ARG PULSE_VERSION
-ARG JEMALLOC_VERSION
+
 COPY patches /usr/src/patches
 RUN \
-    apk add --no-cache \
+    set -x \
+    && apk add --no-cache \
         eudev \
         libintl \
         libltdl \
