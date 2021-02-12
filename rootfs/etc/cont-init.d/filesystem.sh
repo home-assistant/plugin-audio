@@ -1,7 +1,12 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Start PulseAudio service
+# Initialize file system layout /data
 # ==============================================================================
-export PULSE_STATE_PATH=/data/states
 
-exec pulseaudio --system -vvv --disallow-exit --exit-idle-time=-1 --disable-shm
+mkdir -p /data/external
+mkdir -p /data/states
+
+# Cleanup / Migration
+if bashio::fs.directory_exists /data/internal; then
+    rm -rf /data/internal
+fi

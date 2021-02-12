@@ -9,7 +9,7 @@
   },
   "args": {
     "ALSA_VERSION": "1.2.3",
-    "PULSE_VERSION": "13.0"
+    "PULSE_VERSION": "14.2"
   },
   "labels": {
     "io.hass.type": "audio"

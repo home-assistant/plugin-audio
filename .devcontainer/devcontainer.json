@@ -1,0 +1,14 @@
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/alpine
+{
+	"name": "Alpine",
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/ash"
+	},
+	"extensions": [
+		"esbenp.prettier-vscode"
+	],
+	"remoteUser": "vscode"
+}
