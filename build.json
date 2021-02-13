@@ -8,7 +8,7 @@
     "i386": "homeassistant/i386-base:3.12"
   },
   "args": {
-    "ALSA_VERSION": "1.2.3",
+    "ALSA_VERSION": "1.2.4",
     "PULSE_VERSION": "14.2"
   },
   "labels": {
