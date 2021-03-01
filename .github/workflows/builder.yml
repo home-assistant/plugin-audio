@@ -65,7 +65,7 @@ jobs:
       run: echo "BUILD_ARGS=--test" >> $GITHUB_ENV
 
     - name: Build plugin
-      uses: home-assistant/builder@2021.01.1
+      uses: home-assistant/builder@2021.02.0
       with:
         args: |
           $BUILD_ARGS \
