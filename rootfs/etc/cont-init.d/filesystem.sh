@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Initialize file system layout /data
+# Initialize file system layout for /data
 # ==============================================================================
 
 mkdir -p /data/external
