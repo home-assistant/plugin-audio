@@ -13,6 +13,7 @@
     "PULSE_VERSION": "14.2"
   },
   "labels": {
-    "io.hass.type": "audio"
+    "io.hass.type": "audio",
+    "org.opencontainers.image.source": "https://github.com/home-assistant/plugin-audio"
   }
 }
