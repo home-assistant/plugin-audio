@@ -103,5 +103,5 @@ RUN \
         /usr/src/pulseaudio \
         /usr/src/patches
 
-ENV LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
+ENV LD_PRELOAD="/usr/local/lib/libmimalloc.so"
 COPY rootfs /
