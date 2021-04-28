@@ -3,6 +3,8 @@
 # Check device information and adjust Pulse
 # ==============================================================================
 declare tsched
+
+# shellcheck disable=SC2155
 readonly ALSA_CARDS="$(aplay -l)"
 
 # RaspberryPi
