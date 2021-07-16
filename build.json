@@ -9,7 +9,7 @@
     "i386": "ghcr.io/home-assistant/i386-base:3.13"
   },
   "args": {
-    "ALSA_VERSION": "1.2.4",
+    "ALSA_VERSION": "1.2.5.1",
     "PULSE_VERSION": "14.2"
   },
   "labels": {
