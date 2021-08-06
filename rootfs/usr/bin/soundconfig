@@ -119,29 +119,38 @@ mixer $card 'Power Amplifier Mute' on
 mixer $card Headphone 0db on
 mixer $card 'AIF1 Slot 0 Digital DAC' on
 
-# Amlogic G12 HDMI to PCM0
-mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 1'
-mixer $card 'FRDDR_A SRC 1 EN' on
-mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
-mixer $card 'TOHDMITX I2S SRC' 'I2S B'
-mixer $card 'TOHDMITX' on
-
-# Amlogic G12 DAC to PCM1
-mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 2'
-mixer $card 'FRDDR_B SRC 1 EN' on
-mixer $card 'TDMOUT_C SRC SEL' 'IN 1'
-mixer $card 'TOACODEC SRC' 'I2S C'
-mixer $card 'TOACODEC OUT EN' on
-mixer $card 'ACODEC' 100%
-
 # Amlogic GX HDMI and S/PDIF
 mixer $card 'AIU HDMI CTRL SRC' 'I2S'
 mixer $card 'AIU SPDIF SRC SEL' 'SPDIF'
 
 case ${device_id} in
-    pcm5121sound)
+  pcm5121sound)
     # Yellow - set Analogue Gain to -6dB for line-out circuit
     mixer $card 'Analogue' 0
-fi
+    ;;
+  ODROIDN2)
+    # Amlogic G12 HDMI to PCM0
+    mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 1'
+    mixer $card 'FRDDR_A SRC 1 EN' on
+    mixer $card 'TDMOUT_B SRC SEL' 'IN 0'
+    mixer $card 'TOHDMITX I2S SRC' 'I2S B'
+    mixer $card 'TOHDMITX' on
+
+    # Amlogic G12 DAC to PCM1
+    mixer $card 'FRDDR_B SINK 1 SEL' 'OUT 2'
+    mixer $card 'FRDDR_B SRC 1 EN' on
+    mixer $card 'TDMOUT_C SRC SEL' 'IN 1'
+    mixer $card 'TOACODEC SRC' 'I2S C'
+    mixer $card 'TOACODEC OUT EN' on
+    mixer $card 'ACODEC' 100%
+    ;;
+  G12BKHADASVIM3)
+    mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 0'
+    mixer $card 'FRDDR_A SRC 1 EN' on
+    mixer $card 'TDMOUT_A SRC SEL' 'IN 0'
+    mixer $card 'TOHDMITX' on
+    mixer $card 'TOHDMITX I2S SRC' 'I2S A'
+    ;;
+esac
 
 exit 0
