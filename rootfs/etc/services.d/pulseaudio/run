@@ -5,4 +5,4 @@
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-exec pulseaudio --system -vvv --disallow-exit --exit-idle-time=-1 --disable-shm
+exec pulseaudio --system --disallow-exit --exit-idle-time=-1 --disable-shm
