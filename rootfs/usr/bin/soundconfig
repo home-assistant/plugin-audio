@@ -16,8 +16,10 @@ mixer() {
 
 . /etc/profile
 
-# get card num
-card=`echo $1 | sed 's/[^0-9]*//g'`
+# get card num and device id
+control=$(basename "$1")
+card=$(echo $control | sed 's/[^0-9]*//g')
+device_id=$(cat /sys/class/sound/${control}/device/id)
 
 # set common mixer params
 mixer $card Master 0db
@@ -135,5 +137,11 @@ mixer $card 'ACODEC' 100%
 # Amlogic GX HDMI and S/PDIF
 mixer $card 'AIU HDMI CTRL SRC' 'I2S'
 mixer $card 'AIU SPDIF SRC SEL' 'SPDIF'
+
+case ${device_id} in
+    pcm5121sound)
+    # Yellow - set Analogue Gain to -6dB for line-out circuit
+    mixer $card 'Analogue' 0
+fi
 
 exit 0
