@@ -128,7 +128,7 @@ case ${device_id} in
     # Yellow - set Analogue Gain to -6dB for line-out circuit
     mixer $card 'Analogue' 0
     ;;
-  ODROIDN2)
+  G12BODROIDN2|ODROIDN2)
     # Amlogic G12 HDMI to PCM0
     mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 1'
     mixer $card 'FRDDR_A SRC 1 EN' on
