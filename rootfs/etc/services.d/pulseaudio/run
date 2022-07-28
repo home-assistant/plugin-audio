@@ -5,10 +5,10 @@
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-debug="$(jq '.debug' /config/plugin_audio.json)"
+debug="$(bashio::jq /config/plugin_audio.json '.debug')"
 log_level=""
 
-if [ "$debug" = "true" ]; then
+if bashio::var.true "${debug}"; then
   log_level='-vvv'
 fi
 
