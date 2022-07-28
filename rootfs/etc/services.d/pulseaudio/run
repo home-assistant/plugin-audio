@@ -5,4 +5,11 @@
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-exec pulseaudio --system -vvv --disallow-exit --exit-idle-time=-1 --disable-shm
+debug="$(bashio::jq /config/plugin_audio.json '.debug')"
+log_level=""
+
+if bashio::var.true "${debug}"; then
+  log_level='-vvv'
+fi
+
+exec pulseaudio --system --disallow-exit --exit-idle-time=-1 --disable-shm "$log_level"
