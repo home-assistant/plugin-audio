@@ -5,7 +5,7 @@
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-debug="$(bashio::jq /config/pulse_audio.json '.debug')"
+debug="$(bashio::jq /data/pulse_audio.json '.debug')"
 log_level=""
 
 if bashio::var.true "${debug}"; then
