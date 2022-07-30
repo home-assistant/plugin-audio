@@ -5,12 +5,12 @@
 declare puluse_args=()
 
 if bashio::file.exists /data/pulse_audio.json; then
-  # Debug option
-  if bashio::var.true "$(bashio::jq /data/pulse_audio.json '.debug')"; then
-    puluse_args+=("-vvv")
-  fi
+    # Debug option
+    if bashio::var.true "$(bashio::jq /data/pulse_audio.json '.debug')"; then
+        puluse_args+=("-vvv")
+    fi
 else
-  bashio::log.warning "No supervisor configuration found"
+    bashio::log.warning "No supervisor configuration found"
 fi
 
 # Set env
