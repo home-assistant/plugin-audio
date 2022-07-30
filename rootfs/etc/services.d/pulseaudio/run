@@ -2,14 +2,19 @@
 # ==============================================================================
 # Start PulseAudio service
 # ==============================================================================
+declare puluse_args=()
+
+if bashio::file.exists /data/pulse_audio.json; then
+  # Debug option
+  if bashio::var.true "$(bashio::jq /data/pulse_audio.json '.debug')"; then
+    puluse_args+=("-vvv")
+  fi
+else
+  bashio::log.warning "No supervisor configuration found"
+fi
+
+# Set env
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-debug="$(bashio::jq /data/pulse_audio.json '.debug')"
-log_level=""
-
-if bashio::var.true "${debug}"; then
-  log_level='-vvv'
-fi
-
-exec pulseaudio --system --disallow-exit --exit-idle-time=-1 --disable-shm "$log_level"
+exec pulseaudio --system --disallow-exit --exit-idle-time=-1 --disable-shm "${puluse_args[@]}" 
