@@ -145,7 +145,7 @@ case ${device_id} in
     mixer $card 'TOACODEC OUT EN' on
     mixer $card 'ACODEC' 100%
     ;;
-  G12BKHADASVIM3)
+  G12BKHADASVIM3|KHADASVIM3)
     mixer $card 'FRDDR_A SINK 1 SEL' 'OUT 0'
     mixer $card 'FRDDR_A SRC 1 EN' on
     mixer $card 'TDMOUT_A SRC SEL' 'IN 0'
