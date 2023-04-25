@@ -3,7 +3,8 @@ FROM ${BUILD_FROM}
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-ARG ALSA_VERSION
+ARG ALSA_LIB_VERSION
+ARG ALSA_TOOLS_VERSION
 ARG PULSE_VERSION
 
 COPY patches /usr/src/patches
@@ -45,11 +46,11 @@ RUN \
         patch \
     \
     && curl -L -s --retry 5 \
-        "ftp://ftp.alsa-project.org/pub/lib/alsa-ucm-conf-${ALSA_VERSION}.tar.bz2" \
+        "https://www.alsa-project.org/files/pub/lib/alsa-ucm-conf-${ALSA_LIB_VERSION}.tar.bz2" \
         | tar xvfj - -C /usr/share/alsa --strip-components=1 \
     \
     && curl -L -s --retry 5 \
-        "ftp://ftp.alsa-project.org/pub/lib/alsa-topology-conf-${ALSA_VERSION}.tar.bz2" \
+        "https://www.alsa-project.org/files/pub/lib/alsa-topology-conf-${ALSA_TOOLS_VERSION}.tar.bz2" \
         | tar xvfj - -C /usr/share/alsa --strip-components=1 \
     \
     && git clone -b v${PULSE_VERSION} --depth 1 \
@@ -75,7 +76,7 @@ RUN \
         -Dalsa=enabled \
         -Dasyncns=disabled \
         -Davahi=disabled \
-        -Dbluez5=true \
+        -Dbluez5=enabled \
         -Ddbus=enabled \
         -Dfftw=enabled \
         -Dglib=enabled \
@@ -93,6 +94,7 @@ RUN \
         -Dsystemd=disabled \
         -Dudev=enabled \
         -Dx11=disabled \
+        -Ddoxygen=false \
         -Dudevrulesdir=/usr/lib/udev/rules.d \
         . output \
     && ninja -C output \
