@@ -16,6 +16,7 @@ RUN \
         libltdl \
         alsa-utils \
         alsa-lib \
+        alsa-plugins-pulse \
         dbus-libs \
         tdb-libs \
         bluez-libs \
