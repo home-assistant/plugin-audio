@@ -1,17 +1,18 @@
 image: homeassistant/{arch}-hassio-audio
 shadow_repository: ghcr.io/home-assistant
 build_from:
-  aarch64: ghcr.io/home-assistant/aarch64-base:3.13
-  armhf: ghcr.io/home-assistant/armhf-base:3.13
-  armv7: ghcr.io/home-assistant/armv7-base:3.13
-  amd64: ghcr.io/home-assistant/amd64-base:3.13
-  i386: ghcr.io/home-assistant/i386-base:3.13
+  aarch64: ghcr.io/home-assistant/aarch64-base:3.17
+  armhf: ghcr.io/home-assistant/armhf-base:3.17
+  armv7: ghcr.io/home-assistant/armv7-base:3.17
+  amd64: ghcr.io/home-assistant/amd64-base:3.17
+  i386: ghcr.io/home-assistant/i386-base:3.17
 codenotary:
   signer: notary@home-assistant.io
   base_image: notary@home-assistant.io
 args:
-  ALSA_VERSION: 1.2.5.1
-  PULSE_VERSION: 14.2
+  ALSA_LIB_VERSION: 1.2.8
+  ALSA_TOOLS_VERSION: 1.2.5
+  PULSE_VERSION: 16.1
 labels:
   io.hass.type: audio
   org.opencontainers.image.title: Home Assistant Audio Plugin
