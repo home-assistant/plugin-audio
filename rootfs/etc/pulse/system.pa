@@ -28,7 +28,7 @@ load-module module-switch-on-port-available
 load-module module-switch-on-connect
 
 ### Automatically load driver modules depending on the hardware available
-load-module module-udev-detect {{ if not .tsched }}tsched=0{{ end }}
+load-module module-udev-detect
 load-module module-bluetooth-discover
 
 ### Load several protocols
