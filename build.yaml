@@ -1,5 +1,4 @@
-image: homeassistant/{arch}-hassio-audio
-shadow_repository: ghcr.io/home-assistant
+image: ghcr.io/home-assistant/{arch}-hassio-audio
 build_from:
   aarch64: ghcr.io/home-assistant/aarch64-base:3.17
   armhf: ghcr.io/home-assistant/armhf-base:3.17
@@ -9,6 +8,9 @@ build_from:
 codenotary:
   signer: notary@home-assistant.io
   base_image: notary@home-assistant.io
+cosign:
+  base_identity: https://github.com/home-assistant/docker-base/.*
+  identity: https://github.com/home-assistant/plugin-audio/.*
 args:
   ALSA_LIB_VERSION: 1.2.8
   ALSA_TOOLS_VERSION: 1.2.5
