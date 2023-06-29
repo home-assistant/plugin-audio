@@ -46,6 +46,10 @@ jobs:
     name: Build ${{ matrix.arch }} plugin
     needs: init
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     strategy:
       matrix:
         arch: ${{ fromJson(needs.init.outputs.architectures) }}
@@ -53,13 +57,6 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v3.5.3
    
-    - name: Login to DockerHub
-      if: needs.init.outputs.publish == 'true'
-      uses: docker/login-action@v2.2.0
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
     - name: Login to GitHub Container Registry
       if: needs.init.outputs.publish == 'true'
       uses: docker/login-action@v2.2.0
@@ -78,6 +75,7 @@ jobs:
         args: |
           $BUILD_ARGS \
           --${{ matrix.arch }} \
+          --cosign \
           --target /data \
           --generic ${{ needs.init.outputs.version }}
       env:
