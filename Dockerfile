@@ -107,3 +107,5 @@ RUN \
         /usr/src/patches
 
 COPY rootfs /
+
+HEALTHCHECK --interval=10s --start-period=30s CMD [ "$(s6-svstat -u /run/service/pulseaudio)" = "true" ]

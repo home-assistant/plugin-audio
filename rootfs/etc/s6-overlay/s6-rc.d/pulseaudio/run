@@ -17,4 +17,6 @@ fi
 export PULSE_STATE_PATH="/data/states"
 export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
 
-exec pulseaudio --system --disallow-exit --exit-idle-time=-1 --disable-shm "${pulse_args[@]}" 
+exec s6-notifyoncheck -d -s 300 -w 300 -n 0 \
+     pulseaudio --system --disallow-exit --exit-idle-time=-1 \
+                --log-time --disable-shm "${pulse_args[@]}"

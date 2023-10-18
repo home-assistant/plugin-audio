@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Check if pulseaudio socket exists
+test -S /data/external/pulse.sock
+exit
