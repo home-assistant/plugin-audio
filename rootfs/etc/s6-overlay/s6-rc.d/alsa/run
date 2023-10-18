@@ -13,15 +13,9 @@ while read -r line; do
 
         # Run our soundconfig
         soundconfig "${control}"
-    elif [[ "${line}" =~ remove.*(controlC[0-9]) ]]; then
-        control=${BASH_REMATCH[1]}
-        bashio::log.info "Remove ALSA mixer: ${control}"
     else
         bashio::log.debug "Skip ${line}"
         continue
     fi
-
-    # Restart PulseAudio
-    s6-svc -wR -r "/run/service/pulseaudio"
 
 done < <(udevadm monitor --subsystem-match=sound)
