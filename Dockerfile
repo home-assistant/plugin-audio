@@ -14,6 +14,8 @@ RUN \
         eudev \
         libintl \
         libltdl \
+        libgcc \
+        libstdc++ \
         alsa-utils \
         alsa-lib \
         alsa-plugins-pulse \
