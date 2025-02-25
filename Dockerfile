@@ -3,8 +3,6 @@ FROM ${BUILD_FROM}
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-ARG ALSA_LIB_VERSION
-ARG ALSA_TOOLS_VERSION
 ARG PULSE_VERSION
 
 COPY patches /usr/src/patches
@@ -12,11 +10,14 @@ RUN \
     set -x \
     && apk add --no-cache \
         eudev \
+        eudev-libs \
         libintl \
         libltdl \
         alsa-utils \
         alsa-lib \
         alsa-plugins-pulse \
+        alsa-topology-conf \
+        alsa-ucm-conf \
         dbus-libs \
         tdb-libs \
         bluez-libs \
@@ -45,14 +46,6 @@ RUN \
         git \
         m4 \
         patch \
-    \
-    && curl -L -s --retry 5 \
-        "https://www.alsa-project.org/files/pub/lib/alsa-ucm-conf-${ALSA_LIB_VERSION}.tar.bz2" \
-        | tar xvfj - -C /usr/share/alsa --strip-components=1 \
-    \
-    && curl -L -s --retry 5 \
-        "https://www.alsa-project.org/files/pub/lib/alsa-topology-conf-${ALSA_TOOLS_VERSION}.tar.bz2" \
-        | tar xvfj - -C /usr/share/alsa --strip-components=1 \
     \
     && git clone -b v${PULSE_VERSION} --depth 1 \
         https://github.com/pulseaudio/pulseaudio /usr/src/pulseaudio \
