@@ -6,7 +6,7 @@ This container ships the upstream ALSA configs and base settings for Pulse.
 
 ## How it works
 
-The central `hassio_audio` container handles the ALSA settings and runs a PulseAudio service on top.
+The central audio container handles the ALSA settings and runs a PulseAudio service on top.
 The PulseAudio service is exposed to Home Assistant and Add-ons if they need audio support.
 
 This way of implementing audio support allows us to manage everything in one place and streamline the audio as a platform.
