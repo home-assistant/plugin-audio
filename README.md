@@ -9,7 +9,7 @@ This container ships the upstream ALSA configs and base settings for PulseAudio.
 The central audio container handles the ALSA settings and runs a PulseAudio service on top.
 The PulseAudio service is exposed to Home Assistant and Add-ons if they need audio support.
 
-This way of implementing audio support allows us to manage everything in one place and streamline the audio as a platform.
+This way of implementing audio support allows us to manage all audio related configuration in one place.
 By decoupling audio handling from Supervisor and HAOS, we can instead give full control over the audio to the user.
 Users can load and modify PulseAudio modules according to their use cases, while the Supervisor just manages the container itself.
 
