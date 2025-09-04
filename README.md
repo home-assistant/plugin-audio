@@ -16,7 +16,7 @@ Users can load and modify PulseAudio modules according to their use cases, while
 ## Troubleshooting
 
 Troubleshooting requires CLI access, which can be achieved with the Terminal Add-ons from Core or Community.
-There are 2 areas for troubleshooting: The container and the PulseAudio server.
+Most useful for troubleshooting are the Home Assistant CLI `ha audio` commands, as well as the ability to control PulseAudio directly via `pactl`.
 
 ### Container
 
