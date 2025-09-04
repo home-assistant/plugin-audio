@@ -9,7 +9,7 @@ This container ships the upstream ALSA configs and base settings for Pulse.
 The central `hassio_audio` container handles the ALSA settings and runs a PulseAudio service on top.
 The PulseAudio service is exposed to Home Assistant and Add-ons if they need audio support.
 
-This way of implementing audio support allows us to manage everything in one place and streamline the audio as a plaform.
+This way of implementing audio support allows us to manage everything in one place and streamline the audio as a platform.
 By decoupling audio handling from the HA Supervisor and HA Operating System, we can instead give full control over the audio to the user.
 Users can load and modify Pulse modules according to their use cases, while the HA Supervisor just manages the container itself.
 
@@ -40,4 +40,4 @@ You have full access to the Pulse server to adjust any kind of settings. A full 
 
 `pactl list`
 
-This is useful mostly if you have sound issues, and need to enable a different profile for you card.
+This is useful mostly if you have sound issues, and need to enable a different profile for your card.
