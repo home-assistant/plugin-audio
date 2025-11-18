@@ -45,3 +45,7 @@ load-module module-always-sink
 
 ### Enable positioned event sounds
 load-module module-position-event-sounds
+
+.ifexists /data/custom.pa
+.include /data/custom.pa
+.endif
