@@ -45,3 +45,13 @@ load-module module-always-sink
 
 ### Enable positioned event sounds
 load-module module-position-event-sounds
+
+# Load additional user configuration, if present
+#
+# Using nofail has two effects here:
+#  1) Causes PulseAudio to log a message at startup if the user configuration
+#     is not present to increase visible of the corresponding configuration
+#     (cli-command.c: stat('/data/custom.pa'): No such file or directory)
+#  2) Means broken user command in the given file will not make PulseAudio fail
+.nofail
+.include /data/custom.pa
