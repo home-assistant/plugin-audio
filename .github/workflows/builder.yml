@@ -74,7 +74,7 @@ jobs:
       run: echo "BUILD_ARGS=--test" >> $GITHUB_ENV
 
     - name: Build plugin
-      uses: home-assistant/builder@2026.02.1
+      uses: home-assistant/builder@2026.03.2
       with:
         image: ${{ matrix.arch }}
         args: |
