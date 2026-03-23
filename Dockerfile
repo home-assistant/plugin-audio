@@ -1,12 +1,12 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/base:3.23-2026.03.1
 FROM ${BUILD_FROM}
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-ARG PULSE_VERSION
+ARG PULSE_VERSION="17.0"
 
-COPY patches /usr/src/patches
 RUN \
+    --mount=type=bind,source=./patches/,target=/usr/src/patches \
     set -x \
     && apk add --no-cache \
         eudev \
@@ -96,7 +96,15 @@ RUN \
     \
     && apk del .build-deps \
     && rm -rf \
-        /usr/src/pulseaudio \
-        /usr/src/patches
+        /usr/src/pulseaudio
 
 COPY rootfs /
+
+LABEL \
+    io.hass.type="audio" \
+    org.opencontainers.image.title="Home Assistant Audio Plugin" \
+    org.opencontainers.image.description="Home Assistant Supervisor plugin for Audio" \
+    org.opencontainers.image.authors="The Home Assistant Authors" \
+    org.opencontainers.image.url="https://www.home-assistant.io/" \
+    org.opencontainers.image.documentation="https://www.home-assistant.io/docs/" \
+    org.opencontainers.image.licenses="Apache License 2.0"
