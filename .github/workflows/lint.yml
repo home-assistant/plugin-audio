@@ -1,7 +1,6 @@
 name: Lint
 
 env:
-  HADOLINT_VERSION: v1.17.2
   SHELLCHECK_OPTS: -e SC1008 -s bash
 
 on:
@@ -18,16 +17,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v6.0.2
 
-      - name: Run linter
-        id: changed_files
-        run: |
-          shopt -s globstar
-          for dockerfile in **/Dockerfile; do
-            echo "Linting: $dockerfile"
-            docker run --rm -i \
-              -v $(pwd)/.hadolint.yaml:/.hadolint.yaml:ro \
-              hadolint/hadolint:${{ env.HADOLINT_VERSION }} < "$dockerfile"
-          done
+      - uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
   jq:
     runs-on: ubuntu-latest
     name: JQ
@@ -48,4 +38,3 @@ jobs:
 
       - name: Run linter
         uses: ludeeus/action-shellcheck@2.0.0
-  
