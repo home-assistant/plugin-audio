@@ -1,5 +1,5 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/base:3.23-2026.03.1
-FROM ${BUILD_FROM}
+# Base image updated by Renovate, update versionCompatibility on Alpine base bump
+FROM ghcr.io/home-assistant/base:3.23-2026.03.1@sha256:c20ba24722be474428ceee385860c3c17acc48630eb0a6b26cbeb7005406058f
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
