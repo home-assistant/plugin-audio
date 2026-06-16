@@ -1,5 +1,5 @@
 # Base image updated by Renovate, update versionCompatibility on Alpine base bump
-FROM ghcr.io/home-assistant/base:3.23-2026.05.0@sha256:3036cd72ba7755263cd103acc77cb0b438462720c2c8c23b7c2b52e52d7f4b50
+FROM ghcr.io/home-assistant/base:3.23-2026.06.1@sha256:445077433f08d1e352285ff22ee2594f6b93ac3260dcf84433c79cd849a946a0
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
