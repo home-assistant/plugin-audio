@@ -6,7 +6,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/home-assistant/base"],
-      "versionCompatibility": "^3\\.23-(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "versionCompatibility": "^3\\.24-(?<version>\\d+\\.\\d+\\.\\d+)$",
       "versioning": "pep440",
       "sourceUrl": "https://github.com/home-assistant/docker-base",
       "groupName": "docker-base",
