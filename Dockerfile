@@ -3,6 +3,10 @@ FROM ghcr.io/home-assistant/base:3.24-2026.06.1@sha256:94ff231402a5e7ad2a82e261a
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
+# Everything in this image runs s6-supervised and is stopped gracefully
+# by s6-rc: skip the blind SIGTERM-to-SIGKILL grace sleep at shutdown.
+ENV S6_KILL_GRACETIME=0
+
 ARG PULSE_VERSION="17.0"
 
 RUN \
