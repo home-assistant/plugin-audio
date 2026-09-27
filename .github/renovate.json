@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["dockerfile"],
+  "enabledManagers": ["dockerfile", "github-actions"],
   "ignorePaths": [".devcontainer/**"],
   "packageRules": [
     {
@@ -12,6 +12,23 @@
       "groupName": "docker-base",
       "commitMessageTopic": "home-assistant/base image",
       "commitMessageExtra": "to {{newValue}}"
+    },
+    {
+      "description": "Label GitHub Actions updates like Dependabot did",
+      "matchManagers": ["github-actions"],
+      "labels": ["dependencies", "github_actions"]
+    },
+    {
+      "description": "Leave runner labels and action version inputs alone, Dependabot never updated those",
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["github-runner", "uses-with"],
+      "enabled": false
+    },
+    {
+      "description": "Group the home-assistant/builder subactions into one PR (they share a release)",
+      "matchPackageNames": ["/^home-assistant\\/builder(?:\\/|$)/"],
+      "groupName": "home-assistant/builder",
+      "groupSlug": "builder"
     }
   ]
 }
