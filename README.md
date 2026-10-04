@@ -13,6 +13,30 @@ This way of implementing audio support allows us to manage all audio related con
 By decoupling audio handling from Supervisor and HAOS, we can instead give full control over the audio to the user.
 Users can load and modify PulseAudio modules according to their use cases, while the Supervisor just manages the container itself.
 
+## Configuring sample rate and format
+
+Advanced option: `/data` is the plugin's own data directory, reachable on Home Assistant OS
+only with host access (developer SSH on port 22222 or `docker exec` into the audio container).
+
+Place `.conf` drop-in files in `/data/daemon.conf.d/`. They are read in alphabetical order on
+top of the shipped `daemon.conf` (later files win) and applied on `ha audio restart`.
+Example `/data/daemon.conf.d/10-rate.conf`:
+
+```ini
+default-sample-rate = 96000
+alternate-sample-rate = 96000
+default-sample-format = s24le
+```
+
+Formats include `s16le`, `s24le`, `s24-32le`, `s32le` and `float32le`. Equal rates avoid rate
+switches between tracks (audible clicks on some DACs) but resample all streams; use
+`avoid-resampling = true` instead to play streams at their native rate.
+
+- The settings are global defaults for all ALSA outputs and inputs (e.g. USB microphones).
+- If a device does not support the request, PulseAudio silently falls back to the nearest
+  rate and best supported format. Check the result with `pactl list sinks` (`Sample Specification`).
+- An invalid value or unknown key is logged and the rest of that file is skipped.
+
 ## Troubleshooting
 
 Troubleshooting requires CLI access, which can be achieved with the Terminal Add-ons from Core or Community.
