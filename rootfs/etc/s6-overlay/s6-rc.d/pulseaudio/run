@@ -1,14 +1,33 @@
 #!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
 # ==============================================================================
 # Start PulseAudio service
 # ==============================================================================
 declare pulse_args=()
+
+pulse_config() {
+    local cfgFile jsonObj
+    jsonObj="$1"
+    cfgFile="$2"
+    if bashio::jq.is_object /data/pulse_audio.json ".${jsonObj}"; then
+        while read -r key; do
+            if bashio::jq.has_value /data/pulse_audio.json ".${jsonObj}.\"${key}\""; then
+            value=$(bashio::jq /data/pulse_audio.json ".${jsonObj}.\"${key}\"")
+                sed -i -E "s/^.*${key} =.*$/${key} = ${value}/" "$cfgFile"
+                bashio::log.info "Overriding PulseAudio ${jsonObj} conf key '${key} with value '${value}'"
+            fi
+        done < <(bashio::jq /data/pulse_audio.json ".${jsonObj} | keys[]")
+    fi
+
+}
 
 if bashio::fs.file_exists /data/pulse_audio.json; then
     # Debug option
     if bashio::var.true "$(bashio::jq /data/pulse_audio.json '.debug')"; then
         pulse_args+=("-vvv")
     fi
+    # Customize pulse daemon config options
+    pulse_config 'daemon' '/etc/pulse/daemon.conf'
 else
     bashio::log.warning "No supervisor configuration found"
 fi
